@@ -13,15 +13,12 @@ CREATE DATABASE tournament;
 \c tournament
 
 -- Create Players table
-DROP TABLE IF EXISTS players CASCADE;
 create table players (player_id serial primary key, player_name text);
 
 -- create matched table
-DROP TABLE IF EXISTS matches;
 create table matches(match_id serial primary key , winner int references players(player_id) default 0,  loser int references players(player_id) default  0);
 
 -- create ranking view
-DROP VIEW IF EXISTS ranking;
 create view ranking as
     select
        players.player_id,
